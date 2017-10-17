@@ -1,15 +1,15 @@
-mysql> SHOW SLAVE STATUS \G
+MariaDB [(none)]> SHOW SLAVE STATUS \G
 *************************** 1. row ***************************
                Slave_IO_State: Waiting for master to send event
-                  Master_Host: ip-10-0-0-141.eu-west-1.compute.internal
+                  Master_Host: ip-10-0-0-207.eu-west-1.compute.internal
                   Master_User: root
                   Master_Port: 3306
                 Connect_Retry: 60
-              Master_Log_File: mysql-bin.000004
-          Read_Master_Log_Pos: 285
-               Relay_Log_File: mysqld-relay-bin.000002
-                Relay_Log_Pos: 253
-        Relay_Master_Log_File: mysql-bin.000004
+              Master_Log_File: mysql-bin.000003
+          Read_Master_Log_Pos: 1381
+               Relay_Log_File: mariadb-relay-bin.000002
+                Relay_Log_Pos: 529
+        Relay_Master_Log_File: mysql-bin.000003
              Slave_IO_Running: Yes
             Slave_SQL_Running: Yes
               Replicate_Do_DB:
@@ -21,8 +21,8 @@ mysql> SHOW SLAVE STATUS \G
                    Last_Errno: 0
                    Last_Error:
                  Skip_Counter: 0
-          Exec_Master_Log_Pos: 285
-              Relay_Log_Space: 410
+          Exec_Master_Log_Pos: 1381
+              Relay_Log_Space: 825
               Until_Condition: None
                Until_Log_File:
                 Until_Log_Pos: 0
