@@ -214,79 +214,122 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
  
 		  
 ###forward and reverse host lookups
-[centos@ip-10-0-0-141 ~]$ getent hosts `hostname`
-10.0.0.141      ip-10-0-0-141.eu-west-1.compute.internal
+[centos@ip-10-0-0-207 ~]$ getent hosts `hostname`
+10.0.0.207      ip-10-0-0-207.eu-west-1.compute.internal
 
-[centos@ip-10-0-0-74 ~]$ getent hosts `hostname`
-10.0.0.74       ip-10-0-0-74.eu-west-1.compute.internal
 
-[centos@ip-10-0-0-211 ~]$ getent hosts `hostname`
-10.0.0.211      ip-10-0-0-211.eu-west-1.compute.internal
+[centos@ip-10-0-0-60 ~]$ getent hosts `hostname`
+10.0.0.60       ip-10-0-0-60.eu-west-1.compute.internal
 
-[centos@ip-10-0-0-249 ~]$ getent hosts `hostname`
-10.0.0.249      ip-10-0-0-249.eu-west-1.compute.internal
+[centos@ip-10-0-0-54 ~]$ getent hosts `hostname`
+10.0.0.54       ip-10-0-0-54.eu-west-1.compute.internal
 
-[centos@ip-10-0-0-134 ~]$ getent hosts `hostname`
-10.0.0.134      ip-10-0-0-134.eu-west-1.compute.internal
+[centos@ip-10-0-0-16 ~]$ getent hosts `hostname`
+10.0.0.16       ip-10-0-0-16.eu-west-1.compute.internal
+
+[centos@ip-10-0-0-250 ~]$ getent hosts `hostname`
+10.0.0.250      ip-10-0-0-250.eu-west-1.compute.internal
 
 
 
 ###nscd service is running
 sudo yum install nscd -y
 
-[centos@ip-10-0-0-141 ~]$ sudo /etc/init.d/nscd start
-Starting nscd:                                             [  OK  ]
-[centos@ip-10-0-0-141 ~]$ sudo /etc/init.d/nscd status
-nscd (pid 1580) is running...
+[centos@ip-10-0-0-207 ~]$ sudo systemctl status nscd
+? nscd.service - Name Service Cache Daemon
+   Loaded: loaded (/usr/lib/systemd/system/nscd.service; disabled; vendor preset: disabled)
+   Active: active (running) since Tue 2017-10-17 08:24:28 UTC; 7h ago
+ Main PID: 16470 (nscd)
+   CGroup: /system.slice/nscd.service
+           +-16470 /usr/sbin/nscd
 
-[centos@ip-10-0-0-74 ~]$ sudo /etc/init.d/nscd start
-Starting nscd:                                             [  OK  ]
-[centos@ip-10-0-0-74 ~]$ sudo /etc/init.d/nscd status
-nscd (pid 1586) is running...
 
-[centos@ip-10-0-0-211 ~]$ sudo /etc/init.d/nscd start
-Starting nscd:                                             [  OK  ]
-[centos@ip-10-0-0-211 ~]$ sudo /etc/init.d/nscd status
-nscd (pid 1581) is running...
+[centos@ip-10-0-0-60 ~]$ sudo systemctl status nscd
+? nscd.service - Name Service Cache Daemon
+   Loaded: loaded (/usr/lib/systemd/system/nscd.service; disabled; vendor preset: disabled)
+   Active: active (running) since Tue 2017-10-17 08:24:28 UTC; 7h ago
+ Main PID: 9396 (nscd)
+   CGroup: /system.slice/nscd.service
+           +-9396 /usr/sbin/nscd
 
-[centos@ip-10-0-0-249 ~]$ sudo /etc/init.d/nscd start
-Starting nscd:                                             [  OK  ]
-[centos@ip-10-0-0-249 ~]$ sudo /etc/init.d/nscd status
-nscd (pid 1575) is running...
 
-[centos@ip-10-0-0-134 ~]$ sudo /etc/init.d/nscd start
-Starting nscd:                                             [  OK  ]
-[centos@ip-10-0-0-134 ~]$ sudo /etc/init.d/nscd status
-nscd (pid 1581) is running...
+[centos@ip-10-0-0-54 ~]$ getent hosts `hostname`
+10.0.0.54       ip-10-0-0-54.eu-west-1.compute.internal
+[centos@ip-10-0-0-54 ~]$ sudo systemctl status nscd
+? nscd.service - Name Service Cache Daemon
+   Loaded: loaded (/usr/lib/systemd/system/nscd.service; disabled; vendor preset: disabled)
+   Active: active (running) since Tue 2017-10-17 08:24:28 UTC; 7h ago
+ Main PID: 9393 (nscd)
+   CGroup: /system.slice/nscd.service
+           +-9393 /usr/sbin/nscd
+
+
+[centos@ip-10-0-0-16 ~]$ sudo systemctl status nscd
+? nscd.service - Name Service Cache Daemon
+   Loaded: loaded (/usr/lib/systemd/system/nscd.service; disabled; vendor preset: disabled)
+   Active: active (running) since Tue 2017-10-17 08:24:28 UTC; 7h ago
+ Main PID: 9393 (nscd)
+   CGroup: /system.slice/nscd.service
+           +-9393 /usr/sbin/nscd
+
+
+[centos@ip-10-0-0-250 ~]$ getent hosts `hostname`
+10.0.0.250      ip-10-0-0-250.eu-west-1.compute.internal
+[centos@ip-10-0-0-250 ~]$ sudo systemctl status nscd
+? nscd.service - Name Service Cache Daemon
+   Loaded: loaded (/usr/lib/systemd/system/nscd.service; disabled; vendor preset: disabled)
+   Active: active (running) since Tue 2017-10-17 08:24:28 UTC; 7h ago
+ Main PID: 9512 (nscd)
+   CGroup: /system.slice/nscd.service
+           +-9512 /usr/sbin/nscd
+
+
 
 
 ###ntpd service is running
 sudo yum install ntp -y
 
-[centos@ip-10-0-0-141 ~]$ sudo /etc/init.d/ntpd start
-Starting ntpd:                                             [  OK  ]
-[centos@ip-10-0-0-141 ~]$ sudo /etc/init.d/ntpd status
-ntpd (pid  1628) is running...
+[centos@ip-10-0-0-207 ~]$ sudo systemctl status ntpd
+? ntpd.service - Network Time Service
+   Loaded: loaded (/usr/lib/systemd/system/ntpd.service; disabled; vendor preset: disabled)
+   Active: active (running) since Tue 2017-10-17 08:25:26 UTC; 7h ago
+ Main PID: 16539 (ntpd)
+   CGroup: /system.slice/ntpd.service
+           +-16539 /usr/sbin/ntpd -u ntp:ntp -g
 
-[centos@ip-10-0-0-74 ~]$ sudo /etc/init.d/ntpd start
-Starting ntpd:                                             [  OK  ]
-[centos@ip-10-0-0-74 ~]$ sudo /etc/init.d/ntpd status
-ntpd (pid  1634) is running...
+[centos@ip-10-0-0-60 ~]$ sudo systemctl status ntpd
+? ntpd.service - Network Time Service
+   Loaded: loaded (/usr/lib/systemd/system/ntpd.service; disabled; vendor preset: disabled)
+   Active: active (running) since Tue 2017-10-17 08:25:26 UTC; 7h ago
+ Main PID: 9465 (ntpd)
+   CGroup: /system.slice/ntpd.service
+           +-9465 /usr/sbin/ntpd -u ntp:ntp -g
 
-[centos@ip-10-0-0-211 ~]$ sudo /etc/init.d/ntpd start
-Starting ntpd:                                             [  OK  ]
-[centos@ip-10-0-0-211 ~]$ sudo /etc/init.d/ntpd status
-ntpd (pid  1629) is running...
+[centos@ip-10-0-0-54 ~]$ sudo systemctl status ntpd
+? ntpd.service - Network Time Service
+   Loaded: loaded (/usr/lib/systemd/system/ntpd.service; disabled; vendor preset: disabled)
+   Active: active (running) since Tue 2017-10-17 08:25:26 UTC; 7h ago
+ Main PID: 9462 (ntpd)
+   CGroup: /system.slice/ntpd.service
+           +-9462 /usr/sbin/ntpd -u ntp:ntp -g
 
-[centos@ip-10-0-0-249 ~]$ sudo /etc/init.d/ntpd start
-Starting ntpd:                                             [  OK  ]
-[centos@ip-10-0-0-249 ~]$ sudo /etc/init.d/ntpd status
-ntpd (pid  1623) is running...
+[centos@ip-10-0-0-16 ~]$ sudo systemctl status ntpd
+? ntpd.service - Network Time Service
+   Loaded: loaded (/usr/lib/systemd/system/ntpd.service; disabled; vendor preset: disabled)
+   Active: active (running) since Tue 2017-10-17 08:25:26 UTC; 7h ago
+ Main PID: 9462 (ntpd)
+   CGroup: /system.slice/ntpd.service
+           +-9462 /usr/sbin/ntpd -u ntp:ntp -g
 
-[centos@ip-10-0-0-134 ~]$ sudo /etc/init.d/ntpd start
-Starting ntpd:                                             [  OK  ]
-[centos@ip-10-0-0-134 ~]$ sudo /etc/init.d/ntpd status
-ntpd (pid  1629) is running...
+
+[centos@ip-10-0-0-250 ~]$ sudo systemctl status ntpd
+? ntpd.service - Network Time Service
+   Loaded: loaded (/usr/lib/systemd/system/ntpd.service; disabled; vendor preset: disabled)
+   Active: active (running) since Tue 2017-10-17 08:25:26 UTC; 7h ago
+ Main PID: 9581 (ntpd)
+   CGroup: /system.slice/ntpd.service
+           +-9581 /usr/sbin/ntpd -u ntp:ntp -g
+
 
 
 
