@@ -8,27 +8,32 @@ HADOOP=/opt/cloudera/parcels/CDH/bin
 echo Testing loop started on `date`
 
 # Mapper containers
-for i in 8    
+for i in 8 12 16   
 do
+echo "mapper number: $i" 
    # Reducer containers
-   for j in 1 
-   do                 
+   for j in 1 4 8 16
+   do          
+   echo "reducer number: $j"
       # Container memory
-      for k in 512 1024 
-      do                         
+      for k in 1024 2048 4096
+      do   
+		echo "container memory: $k"
          # Set mapper JVM heap 
          MAP_MB=`echo "($k*0.8)/1" | bc` 
+		 echo "MAP JVM heap memory in MB: $MAP_MB"
 
          # Set reducer JVM heap 
          RED_MB=`echo "($k*0.8)/1" | bc` 
-
-        time ${HADOOP}/hadoop jar ${MR}/hadoop-examples.jar teragen \
+		 echo "RED JVM heap memory in MB: $RED_MB"
+		 echo "Teragen:"
+        time sudo -u hdfs ${HADOOP}/hadoop jar ${MR}/hadoop-examples.jar teragen \
                      -Dmapreduce.job.maps=$i \
                      -Dmapreduce.map.memory.mb=$k \
                      -Dmapreduce.map.java.opts.max.heap=$MAP_MB \
                      51200000 /results/tg-10GB-${i}-${j}-${k} 1>tera_${i}_${j}_${k}.out 2>tera_${i}_${j}_${k}.err                       
-
-       time ${HADOOP}/hadoop jar $MR/hadoop-examples.jar terasort \
+		echo "Terasort:"
+        time sudo -u hdfs ${HADOOP}/hadoop jar $MR/hadoop-examples.jar terasort \
                      -Dmapreduce.job.maps=$i \
                      -Dmapreduce.job.reduces=$j \
                      -Dmapreduce.map.memory.mb=$k \
@@ -38,8 +43,8 @@ do
 	             /results/tg-10GB-${i}-${j}-${k}  \
                      /results/ts-10GB-${i}-${j}-${k} 1>>tera_${i}_${j}_${k}.out 2>>tera_${i}_${j}_${k}.err                         
 
-        $HADOOP/hadoop fs -rm -r -skipTrash /results/tg-10GB-${i}-${j}-${k}                         
-        $HADOOP/hadoop fs -rm -r -skipTrash /results/ts-10GB-${i}-${j}-${k}                 
+        sudo -u hdfs $HADOOP/hadoop fs -rm -r -skipTrash /results/tg-10GB-${i}-${j}-${k}                         
+        sudo -u hdfs $HADOOP/hadoop fs -rm -r -skipTrash /results/ts-10GB-${i}-${j}-${k}                 
       done
    done
 done

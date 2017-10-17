@@ -1,14 +1,10 @@
 ########CM Install Lab#######
 
 ###swappiness###
-[centos@ip-10-0-0-141 ~]$ sudo sysctl vm.swappiness=1
-vm.swappiness = 1
-[centos@ip-10-0-0-141 ~]$ cat /proc/sys/vm/swappiness
+[benjaminMaier@ip-10-0-0-207 centos]$ cat /proc/sys/vm/swappiness
 1
 
-[centos@ip-10-0-0-74 ~]$ sudo sysctl vm.swappiness=1
-vm.swappiness = 1
-[centos@ip-10-0-0-74 ~]$ cat /proc/sys/vm/swappiness
+[centos@ip-10-0-0-60 ~]$ cat /proc/sys/vm/swappiness
 1
 
 [centos@ip-10-0-0-211 ~]$ sudo sysctl vm.swappiness=1
@@ -16,212 +12,205 @@ vm.swappiness = 1
 [centos@ip-10-0-0-211 ~]$ cat /proc/sys/vm/swappiness
 1
 
-[centos@ip-10-0-0-249 ~]$ sudo sysctl vm.swappiness=1
-vm.swappiness = 1
-[centos@ip-10-0-0-249 ~]$ cat /proc/sys/vm/swappiness
+[centos@ip-10-0-0-54 ~]$ cat /proc/sys/vm/swappiness
 1
 
-[centos@ip-10-0-0-134 ~]$ sudo sysctl vm.swappiness=1
-vm.swappiness = 1
-[centos@ip-10-0-0-134 ~]$ cat /proc/sys/vm/swappiness
+[centos@ip-10-0-0-16 ~]$ cat /proc/sys/vm/swappiness
 1
 
+[centos@ip-10-0-0-250 ~]$ cat /proc/sys/vm/swappiness
+1
 
-
-###mount###
-[centos@ip-10-0-0-141 ~]$ mount
-/dev/xvda1 on / type ext4 (rw)
-proc on /proc type proc (rw)
-sysfs on /sys type sysfs (rw)
-devpts on /dev/pts type devpts (rw,gid=5,mode=620)
-tmpfs on /dev/shm type tmpfs (rw,rootcontext="system_u:object_r:tmpfs_t:s0")
-none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
-/dev/xvdb on /mnt type ext3 (rw,_netdev)
-
-[centos@ip-10-0-0-74 ~]$ mount
-/dev/xvda1 on / type ext4 (rw)
-proc on /proc type proc (rw)
-sysfs on /sys type sysfs (rw)
-devpts on /dev/pts type devpts (rw,gid=5,mode=620)
-tmpfs on /dev/shm type tmpfs (rw,rootcontext="system_u:object_r:tmpfs_t:s0")
-none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
-/dev/xvdb on /mnt type ext3 (rw,_netdev)
-
-[centos@ip-10-0-0-211 ~]$ mount
-/dev/xvda1 on / type ext4 (rw)
-proc on /proc type proc (rw)
-sysfs on /sys type sysfs (rw)
-devpts on /dev/pts type devpts (rw,gid=5,mode=620)
-tmpfs on /dev/shm type tmpfs (rw,rootcontext="system_u:object_r:tmpfs_t:s0")
-none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
-/dev/xvdb on /mnt type ext3 (rw,_netdev)
-
-[centos@ip-10-0-0-249 ~]$ mount
-/dev/xvda1 on / type ext4 (rw)
-proc on /proc type proc (rw)
-sysfs on /sys type sysfs (rw)
-devpts on /dev/pts type devpts (rw,gid=5,mode=620)
-tmpfs on /dev/shm type tmpfs (rw,rootcontext="system_u:object_r:tmpfs_t:s0")
-none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
-/dev/xvdb on /mnt type ext3 (rw,_netdev)
-
-[centos@ip-10-0-0-134 ~]$ mount
-/dev/xvda1 on / type ext4 (rw)
-proc on /proc type proc (rw)
-sysfs on /sys type sysfs (rw)
-devpts on /dev/pts type devpts (rw,gid=5,mode=620)
-tmpfs on /dev/shm type tmpfs (rw,rootcontext="system_u:object_r:tmpfs_t:s0")
-none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)
-/dev/xvdb on /mnt type ext3 (rw,_netdev)
 
 
 
 ###reserve space
-[centos@ip-10-0-0-141 ~]$ df -hT
-Filesystem     Type   Size  Used Avail Use% Mounted on
-/dev/xvda1     ext4   7.8G  666M  6.7G   9% /
-tmpfs          tmpfs  7.3G     0  7.3G   0% /dev/shm
-/dev/xvdb      ext3    37G  177M   35G   1% /mnt
+[benjaminMaier@ip-10-0-0-207 centos]$ df -hT
+Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/xvda1     xfs        40G   17G   24G  43% /
+devtmpfs       devtmpfs  7.3G     0  7.3G   0% /dev
+tmpfs          tmpfs     7.2G     0  7.2G   0% /dev/shm
+tmpfs          tmpfs     7.2G   25M  7.2G   1% /run
+tmpfs          tmpfs     7.2G     0  7.2G   0% /sys/fs/cgroup
+/dev/xvdb      ext3       37G  9.0G   26G  26% /mnt
+tmpfs          tmpfs     1.5G     0  1.5G   0% /run/user/1000
+tmpfs          tmpfs     1.5G     0  1.5G   0% /run/user/995
+/dev/xvdc      ext3       37G  8.9G   27G  26% /data0
+tmpfs          tmpfs     1.5G     0  1.5G   0% /run/user/0
+cm_processes   tmpfs     7.2G  2.0M  7.2G   1% /run/cloudera-scm-agent/process
 
-[centos@ip-10-0-0-74 ~]$ df -hT
-Filesystem     Type   Size  Used Avail Use% Mounted on
-/dev/xvda1     ext4   7.8G  666M  6.7G   9% /
-tmpfs          tmpfs  7.3G     0  7.3G   0% /dev/shm
-/dev/xvdb      ext3    37G  177M   35G   1% /mnt
 
-[centos@ip-10-0-0-211 ~]$ df -hT
-Filesystem     Type   Size  Used Avail Use% Mounted on
-/dev/xvda1     ext4   7.8G  666M  6.7G   9% /
-tmpfs          tmpfs  7.3G     0  7.3G   0% /dev/shm
-/dev/xvdb      ext3    37G  177M   35G   1% /mnt
+[centos@ip-10-0-0-60 ~]$ df -hT
+Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/xvda1     xfs        40G   17G   24G  42% /
+devtmpfs       devtmpfs  7.3G     0  7.3G   0% /dev
+tmpfs          tmpfs     7.2G     0  7.2G   0% /dev/shm
+tmpfs          tmpfs     7.2G   25M  7.2G   1% /run
+tmpfs          tmpfs     7.2G     0  7.2G   0% /sys/fs/cgroup
+/dev/xvdb      ext3       37G   10G   25G  29% /mnt
+tmpfs          tmpfs     1.5G     0  1.5G   0% /run/user/1000
+tmpfs          tmpfs     1.5G     0  1.5G   0% /run/user/0
+/dev/xvdc      ext3       37G   11G   25G  30% /data0
+cm_processes   tmpfs     7.2G  1.2M  7.2G   1% /run/cloudera-scm-agent/process
 
-[centos@ip-10-0-0-249 ~]$ df -hT
-Filesystem     Type   Size  Used Avail Use% Mounted on
-/dev/xvda1     ext4   7.8G  666M  6.7G   9% /
-tmpfs          tmpfs  7.3G     0  7.3G   0% /dev/shm
-/dev/xvdb      ext3    37G  177M   35G   1% /mnt
 
-[centos@ip-10-0-0-134 ~]$ df -hT
-Filesystem     Type   Size  Used Avail Use% Mounted on
-/dev/xvda1     ext4   7.8G  666M  6.7G   9% /
-tmpfs          tmpfs  7.3G     0  7.3G   0% /dev/shm
-/dev/xvdb      ext3    37G  177M   35G   1% /mnt
+[centos@ip-10-0-0-54 ~]$ df -hT
+Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/xvda1     xfs        40G   16G   25G  39% /
+devtmpfs       devtmpfs  7.3G     0  7.3G   0% /dev
+tmpfs          tmpfs     7.2G     0  7.2G   0% /dev/shm
+tmpfs          tmpfs     7.2G   25M  7.2G   1% /run
+tmpfs          tmpfs     7.2G     0  7.2G   0% /sys/fs/cgroup
+/dev/xvdb      ext3       37G  9.4G   26G  27% /mnt
+tmpfs          tmpfs     1.5G     0  1.5G   0% /run/user/1000
+tmpfs          tmpfs     1.5G     0  1.5G   0% /run/user/0
+/dev/xvdc      ext3       37G  9.2G   26G  27% /data0
+cm_processes   tmpfs     7.2G  1.4M  7.2G   1% /run/cloudera-scm-agent/process
+
+
+[centos@ip-10-0-0-16 ~]$ df -hT
+Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/xvda1     xfs        40G  6.8G   34G  17% /
+devtmpfs       devtmpfs  7.3G     0  7.3G   0% /dev
+tmpfs          tmpfs     7.2G     0  7.2G   0% /dev/shm
+tmpfs          tmpfs     7.2G   25M  7.2G   1% /run
+tmpfs          tmpfs     7.2G     0  7.2G   0% /sys/fs/cgroup
+/dev/xvdb      ext3       37G   49M   35G   1% /mnt
+tmpfs          tmpfs     1.5G     0  1.5G   0% /run/user/1000
+tmpfs          tmpfs     1.5G     0  1.5G   0% /run/user/0
+/dev/xvdc      ext3       37G   52M   35G   1% /data0
+cm_processes   tmpfs     7.2G   19M  7.2G   1% /run/cloudera-scm-agent/process
+
+
+[centos@ip-10-0-0-250 ~]$ df -hT
+Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/xvda1     xfs        40G   18G   23G  44% /
+devtmpfs       devtmpfs  7.3G     0  7.3G   0% /dev
+tmpfs          tmpfs     7.2G     0  7.2G   0% /dev/shm
+tmpfs          tmpfs     7.2G   25M  7.2G   1% /run
+tmpfs          tmpfs     7.2G     0  7.2G   0% /sys/fs/cgroup
+/dev/xvdb      ext3       37G   12G   24G  34% /mnt
+tmpfs          tmpfs     1.5G     0  1.5G   0% /run/user/1000
+tmpfs          tmpfs     1.5G     0  1.5G   0% /run/user/0
+/dev/xvdc      ext3       37G   12G   24G  33% /data0
+cm_processes   tmpfs     7.2G  1.5M  7.2G   1% /run/cloudera-scm-agent/process
 
 
 
 ###Disable transparent hugepage support
-[centos@ip-10-0-0-141 ~]$ cat /sys/kernel/mm/transparent_hugepage/enabled
+[benjaminMaier@ip-10-0-0-207 centos]$ cat /sys/kernel/mm/transparent_hugepage/enabled
 [always] madvise never
 
-[centos@ip-10-0-0-74 ~]$ cat /sys/kernel/mm/transparent_hugepage/enabled
+[centos@ip-10-0-0-60 ~]$ cat /sys/kernel/mm/transparent_hugepage/enabled
 [always] madvise never
 
-[centos@ip-10-0-0-211 ~]$ cat /sys/kernel/mm/transparent_hugepage/enabled
+[centos@ip-10-0-0-54 ~]$ cat /sys/kernel/mm/transparent_hugepage/enabled
 [always] madvise never
 
-[centos@ip-10-0-0-249 ~]$ cat /sys/kernel/mm/transparent_hugepage/enabled
+[centos@ip-10-0-0-16 ~]$ cat /sys/kernel/mm/transparent_hugepage/enabled
 [always] madvise never
 
-[centos@ip-10-0-0-134 ~]$ cat /sys/kernel/mm/transparent_hugepage/enabled
+[centos@ip-10-0-0-250 ~]$ cat /sys/kernel/mm/transparent_hugepage/enabled
 [always] madvise never
 
 
 ###Network interface configuaration
-[centos@ip-10-0-0-141 ~]$  ifconfig
-eth0      Link encap:Ethernet  HWaddr 0A:CB:09:F0:BD:16
-          inet addr:10.0.0.141  Bcast:10.0.0.255  Mask:255.255.255.0
-          inet6 addr: fe80::8cb:9ff:fef0:bd16/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:9001  Metric:1
-          RX packets:582 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:511 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000
-          RX bytes:54666 (53.3 KiB)  TX bytes:59842 (58.4 KiB)
-          Interrupt:143
+[benjaminMaier@ip-10-0-0-207 centos]$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 10.0.0.207  netmask 255.255.255.0  broadcast 10.0.0.255
+        inet6 fe80::886:c9ff:fed5:2744  prefixlen 64  scopeid 0x20<link>
+        ether 0a:86:c9:d5:27:44  txqueuelen 1000  (Ethernet)
+        RX packets 11077518  bytes 42808011233 (39.8 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 6076678  bytes 43484260519 (40.4 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-lo        Link encap:Local Loopback
-          inet addr:127.0.0.1  Mask:255.0.0.0
-          inet6 addr: ::1/128 Scope:Host
-          UP LOOPBACK RUNNING  MTU:65536  Metric:1
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0
-          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 2565913  bytes 36892126881 (34.3 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2565913  bytes 36892126881 (34.3 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-eth0      Link encap:Ethernet  HWaddr 0A:65:9B:A5:07:DE
-          inet addr:10.0.0.74  Bcast:10.0.0.255  Mask:255.255.255.0
-          inet6 addr: fe80::865:9bff:fea5:7de/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:9001  Metric:1
-          RX packets:575 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:490 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000
-          RX bytes:55000 (53.7 KiB)  TX bytes:59757 (58.3 KiB)
-          Interrupt:143
+[centos@ip-10-0-0-60 ~]$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 10.0.0.60  netmask 255.255.255.0  broadcast 10.0.0.255
+        inet6 fe80::8b6:bdff:feff:9e76  prefixlen 64  scopeid 0x20<link>
+        ether 0a:b6:bd:ff:9e:76  txqueuelen 1000  (Ethernet)
+        RX packets 9904970  bytes 45894941009 (42.7 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 4947710  bytes 38439727030 (35.7 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-lo        Link encap:Local Loopback
-          inet addr:127.0.0.1  Mask:255.0.0.0
-          inet6 addr: ::1/128 Scope:Host
-          UP LOOPBACK RUNNING  MTU:65536  Metric:1
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0
-          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 3187426  bytes 66607187700 (62.0 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3187426  bytes 66607187700 (62.0 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-eth0      Link encap:Ethernet  HWaddr 0A:72:AC:94:EE:E6
-          inet addr:10.0.0.211  Bcast:10.0.0.255  Mask:255.255.255.0
-          inet6 addr: fe80::872:acff:fe94:eee6/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:9001  Metric:1
-          RX packets:513 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:469 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000
-          RX bytes:49925 (48.7 KiB)  TX bytes:54517 (53.2 KiB)
-          Interrupt:143
+[centos@ip-10-0-0-54 ~]$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 10.0.0.54  netmask 255.255.255.0  broadcast 10.0.0.255
+        inet6 fe80::87c:fbff:fed4:54bc  prefixlen 64  scopeid 0x20<link>
+        ether 0a:7c:fb:d4:54:bc  txqueuelen 1000  (Ethernet)
+        RX packets 9454272  bytes 40287924512 (37.5 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 4865118  bytes 44569001568 (41.5 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-lo        Link encap:Local Loopback
-          inet addr:127.0.0.1  Mask:255.0.0.0
-          inet6 addr: ::1/128 Scope:Host
-          UP LOOPBACK RUNNING  MTU:65536  Metric:1
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0
-          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 2275971  bytes 45576296538 (42.4 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2275971  bytes 45576296538 (42.4 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-eth0      Link encap:Ethernet  HWaddr 0A:CF:7C:F4:01:C2
-          inet addr:10.0.0.249  Bcast:10.0.0.255  Mask:255.255.255.0
-          inet6 addr: fe80::8cf:7cff:fef4:1c2/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:9001  Metric:1
-          RX packets:511 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:471 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000
-          RX bytes:49848 (48.6 KiB)  TX bytes:54553 (53.2 KiB)
-          Interrupt:143
+[centos@ip-10-0-0-16 ~]$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 10.0.0.16  netmask 255.255.255.0  broadcast 10.0.0.255
+        inet6 fe80::80d:b6ff:fec8:b46e  prefixlen 64  scopeid 0x20<link>
+        ether 0a:0d:b6:c8:b4:6e  txqueuelen 1000  (Ethernet)
+        RX packets 3389157  bytes 3780588269 (3.5 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2432576  bytes 2248988059 (2.0 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-lo        Link encap:Local Loopback
-          inet addr:127.0.0.1  Mask:255.0.0.0
-          inet6 addr: ::1/128 Scope:Host
-          UP LOOPBACK RUNNING  MTU:65536  Metric:1
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0
-          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 431900  bytes 478561766 (456.3 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 431900  bytes 478561766 (456.3 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-eth0      Link encap:Ethernet  HWaddr 0A:BE:7E:28:FE:66
-          inet addr:10.0.0.134  Bcast:10.0.0.255  Mask:255.255.255.0
-          inet6 addr: fe80::8be:7eff:fe28:fe66/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:9001  Metric:1
-          RX packets:517 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:472 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000
-          RX bytes:50044 (48.8 KiB)  TX bytes:54479 (53.2 KiB)
-          Interrupt:143
+[centos@ip-10-0-0-250 ~]$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 10.0.0.250  netmask 255.255.255.0  broadcast 10.0.0.255
+        inet6 fe80::80f:afff:fe0e:d93a  prefixlen 64  scopeid 0x20<link>
+        ether 0a:0f:af:0e:d9:3a  txqueuelen 1000  (Ethernet)
+        RX packets 9281629  bytes 46795709738 (43.5 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 5526693  bytes 40468657458 (37.6 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
-lo        Link encap:Local Loopback
-          inet addr:127.0.0.1  Mask:255.0.0.0
-          inet6 addr: ::1/128 Scope:Host
-          UP LOOPBACK RUNNING  MTU:65536  Metric:1
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0
-          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 0  (Local Loopback)
+        RX packets 2340412  bytes 46887141825 (43.6 GiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2340412  bytes 46887141825 (43.6 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
  
 		  
 ###forward and reverse host lookups
