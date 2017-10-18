@@ -116,7 +116,7 @@ dns_resolution_collection_timeout_seconds=30
 
 [Security]
 # Use TLS and certificate validation when connecting to the CM server.
-<b>use_tls=1</b>
+use_tls=1
 
 # The maximum allowed depth of the certificate chain returned by the peer.
 # The default value of 9 matches the default specified in openssl's
