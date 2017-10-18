@@ -20,7 +20,7 @@ SELECT cpu_system_rate + cpu_user_rate WHERE serviceName = hue
 
 ### Name all the roles that make up the Hive service
 
-HiveServer2, Hive Metastore Server and Hive Gateway
+HiveServer2, Hive Metastore Server, WebHCat Server and Hive Gateway
 
 ### What steps must be completed before integrating Cloudera Manager with Kerberos?
 
