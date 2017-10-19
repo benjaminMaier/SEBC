@@ -1,15 +1,20 @@
-###Add user on Linux
+### Add user on Linux
 
+```
 [centos@ip-10-0-0-207 ~]$ sudo useradd benjaminMaier
 [centos@ip-10-0-0-207 ~]$ sudo passwd benjaminMaier
+```
 
 ### create user directory
 
+```
 [centos@ip-10-0-0-207 ~]$ sudo -u hdfs hdfs dfs -mkdir /user/benjaminMaier
 [centos@ip-10-0-0-207 ~]$ sudo -u hdfs hdfs dfs -chown benjaminMaier:benjaminMaier /user/benjaminMaier
-
+```
 
 ### run teragen with 4 mappers and 32MB blocksize
+
+```
 [benjaminMaier@ip-10-0-0-207 centos]$ time hadoop jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar teragen -Dmapred.map.tasks=4 -Ddfs.blocksize=33554432  107374182 /user/benjaminMaier/teragen_output
 17/10/17 11:49:31 INFO client.RMProxy: Connecting to ResourceManager at ip-10-0-0-16.eu-west-1.compute.internal/10.0.0.16:8032
 17/10/17 11:49:31 INFO terasort.TeraSort: Generating 107374182 using 4
@@ -87,10 +92,11 @@
 real    1m26.590s
 user    0m5.648s
 sys     0m0.246s
+```
 
+### terasort 
 
-###terasort 
-
+```
 [benjaminMaier@ip-10-0-0-207 centos]$ time hadoop jar /opt/cloudera/parcels/CDH/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar terasort /user/benjaminMaier/teragen_output /user/benjaminMaier/terasort_output
 17/10/17 11:52:38 INFO terasort.TeraSort: starting
 17/10/17 11:52:40 INFO input.FileInputFormat: Total input paths to process : 4
@@ -306,7 +312,7 @@ Spent 1064ms computing partitions.
 real    5m25.008s
 user    0m9.207s
 sys     0m0.352s
-
+```
 
 
 
