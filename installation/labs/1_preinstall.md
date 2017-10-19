@@ -1,14 +1,21 @@
-########CM Install Lab#######
+######## CM Install Lab #######
 
-###swappiness###
+### swappiness
+
+Executed the command below on every host
+```
+[centos@ip-10-0-0-211 ~]$ sudo sysctl vm.swappiness=1
+vm.swappiness = 1
+```
+
+Check swappiness after executing the command above
+```
 [benjaminMaier@ip-10-0-0-207 centos]$ cat /proc/sys/vm/swappiness
 1
 
 [centos@ip-10-0-0-60 ~]$ cat /proc/sys/vm/swappiness
 1
 
-[centos@ip-10-0-0-211 ~]$ sudo sysctl vm.swappiness=1
-vm.swappiness = 1
 [centos@ip-10-0-0-211 ~]$ cat /proc/sys/vm/swappiness
 1
 
@@ -20,11 +27,13 @@ vm.swappiness = 1
 
 [centos@ip-10-0-0-250 ~]$ cat /proc/sys/vm/swappiness
 1
+```
 
 
 
+### reserve space
 
-###reserve space
+```
 [benjaminMaier@ip-10-0-0-207 centos]$ df -hT
 Filesystem     Type      Size  Used Avail Use% Mounted on
 /dev/xvda1     xfs        40G   17G   24G  43% /
@@ -94,10 +103,11 @@ tmpfs          tmpfs     1.5G     0  1.5G   0% /run/user/1000
 tmpfs          tmpfs     1.5G     0  1.5G   0% /run/user/0
 /dev/xvdc      ext3       37G   12G   24G  33% /data0
 cm_processes   tmpfs     7.2G  1.5M  7.2G   1% /run/cloudera-scm-agent/process
+```
 
 
-
-###Disable transparent hugepage support
+### Disable transparent hugepage support
+```
 [benjaminMaier@ip-10-0-0-207 centos]$ cat /sys/kernel/mm/transparent_hugepage/enabled
 [always] madvise never
 
@@ -112,9 +122,10 @@ cm_processes   tmpfs     7.2G  1.5M  7.2G   1% /run/cloudera-scm-agent/process
 
 [centos@ip-10-0-0-250 ~]$ cat /sys/kernel/mm/transparent_hugepage/enabled
 [always] madvise never
+```
 
-
-###Network interface configuaration
+### Network interface configuaration
+```
 [benjaminMaier@ip-10-0-0-207 centos]$ ifconfig
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
         inet 10.0.0.207  netmask 255.255.255.0  broadcast 10.0.0.255
@@ -209,11 +220,12 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 2340412  bytes 46887141825 (43.6 GiB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
+```
 
  
 		  
-###forward and reverse host lookups
+### forward and reverse host lookups
+```
 [centos@ip-10-0-0-207 ~]$ getent hosts `hostname`
 10.0.0.207      ip-10-0-0-207.eu-west-1.compute.internal
 
@@ -229,12 +241,16 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 
 [centos@ip-10-0-0-250 ~]$ getent hosts `hostname`
 10.0.0.250      ip-10-0-0-250.eu-west-1.compute.internal
+```
 
 
+### nscd service is running
 
-###nscd service is running
+```
 sudo yum install nscd -y
+```
 
+```
 [centos@ip-10-0-0-207 ~]$ sudo systemctl status nscd
 ? nscd.service - Name Service Cache Daemon
    Loaded: loaded (/usr/lib/systemd/system/nscd.service; disabled; vendor preset: disabled)
@@ -282,13 +298,17 @@ sudo yum install nscd -y
  Main PID: 9512 (nscd)
    CGroup: /system.slice/nscd.service
            +-9512 /usr/sbin/nscd
+```
 
 
 
+### ntpd service is running
 
-###ntpd service is running
+```
 sudo yum install ntp -y
+```
 
+```
 [centos@ip-10-0-0-207 ~]$ sudo systemctl status ntpd
 ? ntpd.service - Network Time Service
    Loaded: loaded (/usr/lib/systemd/system/ntpd.service; disabled; vendor preset: disabled)
@@ -329,7 +349,7 @@ sudo yum install ntp -y
  Main PID: 9581 (ntpd)
    CGroup: /system.slice/ntpd.service
            +-9581 /usr/sbin/ntpd -u ntp:ntp -g
-
+```
 
 
 
