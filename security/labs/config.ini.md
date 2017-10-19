@@ -1,7 +1,6 @@
-```
 [General]
 # Hostname of the CM server.
-server_host=ip-10-0-0-207.eu-west-1.compute.internal
+server_host=ip-10-0-0-222.eu-west-1.compute.internal
 
 # Port that the CM server is listening on.
 server_port=7182
@@ -221,4 +220,3 @@ max_cert_depth=9
 #cloudera_oracle_connector_jar=/usr/share/java/oracle-connector-java.jar
 #By default, postgres jar is found dynamically in $MGMT_HOME/lib
 #cloudera_postgresql_jdbc_jar=
-```
